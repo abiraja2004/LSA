@@ -219,55 +219,46 @@ class LSA(object):
         print(self.A)
 
     def printSVD(self):
-        file_1 = open("result.txt", "w")  # output "w" - переписать, "a" - дописать в конец.
-
+        file_S = open("result-S.txt", "w")  # output "w" - переписать, "a" - дописать в конец.
         print('the singular values S-matrix')
         print(self.S)
-        file_1.write('S-matrix\n')
+        file_S.write('S-matrix\n')
         i = 0
         while i < 1:
-            file_1.write(str(self.S))
+            file_S.write(str(self.S))
             i += 1
+        file_S.close
 
+        file_U = open("result-U.txt", "w")  # output "w" - переписать, "a" - дописать в конец.
         print('the columns of the U-matrix')
         print(- 1 * self.U)
-        file_1.write('\nU-matrix\n')
+        file_U.write('\nU-matrix\n')
         i = 0
         j = 0
         for i in range(len(self.U)):
             for j in range(len(self.U[i])):
-                file_1.write(str(' '))
-                file_1.write(str(-1 * self.U[i][j])) #wtf
+                file_U.write(str(' '))
+                file_U.write(str(-1 * self.U[i][j])) #wtf
                 j+=1
             i+=1
-            file_1.write('\n')
+            file_U.write('\n')
+        file_U.close
 
+        file_Vt = open("result-Vt.txt", "w")  # output "w" - переписать, "a" - дописать в конец.
         print('the rows of the Vt-matrix')
         print(- 1 * self.Vt)
-        file_1.write('\nU-matrix\n')
+        file_Vt.write('\nU-matrix\n')
         i = 0
         j = 0
         for i in range(len(self.Vt)):
             for j in range(len(self.Vt[i])):
-                file_1.write(str(' '))
-                file_1.write(str(-1 * self.Vt[i][j]))  # wtf
+                file_Vt.write(str(' '))
+                file_Vt.write(str(-1 * self.Vt[i][j]))  # wtf
                 j += 1
             i += 1
-            file_1.write('\n')
+            file_Vt.write('\n')
+        file_Vt.close
 
-        print('the columns of the U-matrix')
-        print(- 1 * self.U)
-        file_1.write('\nU-matrix\n')
-        i = 0
-        j = 0
-        for i in range(len(self.U)):
-            for j in range(len(self.U[i])):
-                file_1.write(str(' '))
-                file_1.write(str(-1 * self.U[i][j]))  # wtf
-                j += 1
-            i += 1
-            file_1.write('\n')
-        file_1.close()
 
     def TFIDF(self):
         WordsPerDoc = sum(self.A, axis=0)
